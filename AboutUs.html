@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Rose's Gym</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 18px;
+      background-color: grey;
+      color: black;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 60px; /* Space for the fixed footer */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    header {
+      background-color: #808080;
+      color: black;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .auth-buttons a {
+      background-color: black;
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .auth-buttons a:hover {
+      background-color: #444;
+    }
+
+    nav {
+      background-color: #555;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+
+    nav a {
+      color: black;
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      background-color: #666;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+    }
+
+    section img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 700px;
+      margin: 10px auto;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background-color: #555;
+      color: black;
+    }
+
+    #myModal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    #myModal .modal-content {
+      background: white;
+      margin: 100px auto;
+      padding: 20px;
+      width: 300px;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    #myModal .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .dark-mode #myModal .modal-content {
+      background-color: #333;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .auth-buttons {
+        position: static;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      nav a {
+        font-size: 16px;
+        padding: 8px 10px;
+      }
+
+      section img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .auth-buttons a {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+
+      nav {
+        flex-direction: column;
+      }
+
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>About Us</h1>
+    <div class="auth-buttons">
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="GymTracker.html">Home</a>
+    <a href="Services.html">Services</a>
+    <a href="WorkoutRoutines.html">Workout Routines</a>
+    <a href="AboutUs.html">About Us</a>
+    <a href="FAQ.html">FAQ</a>
+  </nav>
+
+  <section>
+    <img src="Rose_s Gym.jpg(1).jpg" alt="Rose's Gym" />
+    <p>At Rose's Gym, we are passionate about helping individuals achieve their health and wellness goals. Whether you're looking to build strength, lose weight, or improve your overall fitness, we offer expert guidance, personalized programs, and a supportive community to keep you motivated.</p>
+    <p>Our team of certified trainers and nutrition specialists are dedicated to providing effective, science-backed workouts and coaching tailored to all fitness levels. We believe in making fitness accessible, enjoyable, and sustainable for everyone.</p>
+    <p>Join us on your fitness journey and take the first step toward a stronger, healthier you!</p>
+
+    <br />
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button onclick="openModal()">Get Inspired</button>
+  </section>
+
+  <!-- Modal -->
+  <div id="myModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>“Fitness is not about being better than someone else… it’s about being better than you used to be.”</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Rose's Gym. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

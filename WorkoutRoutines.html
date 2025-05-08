@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Workout Routine - Rose's Gym</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 18px;
+      background-color: grey;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    header {
+      background-color: #808080;
+      color: black;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .auth-buttons a {
+      background-color: black;
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .auth-buttons a:hover {
+      background-color: #444;
+    }
+
+    nav {
+      background-color: #555;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+
+    nav a {
+      color: black;
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      background-color: #666;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      background-color: #d3d3d3;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    li img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 5px;
+    }
+
+    hr {
+      border: 1px solid black;
+      width: 50%;
+      margin: 20px auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #555;
+      color: black;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #myModal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    #myModal .modal-content {
+      background: white;
+      margin: 100px auto;
+      padding: 20px;
+      width: 300px;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    #myModal .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .auth-buttons {
+        position: static;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      nav a {
+        font-size: 16px;
+        padding: 8px 10px;
+      }
+
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      li img {
+        margin-bottom: 10px;
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Workout Routines</h1>
+    <div class="auth-buttons">
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="GymTracker.html">Home</a>
+    <a href="Services.html">Services</a>
+    <a href="WorkoutRoutines.html">Workout Routines</a>
+    <a href="AboutUs.html">About Us</a>
+    <a href="FAQ.html">FAQ</a>
+  </nav>
+
+  <section>
+    <h2>Select Workout Routine</h2>
+    <select id="routineSelect" onchange="loadRoutine()">
+      <option value="">-- Choose Routine --</option>
+      <option value="beginner">Beginner</option>
+      <!-- You can add more options like intermediate, advanced, etc. -->
+    </select>
+
+    <div id="routineList"></div>
+
+    <br>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button onclick="openModal()">Open Fitness Tip</button>
+  </section>
+
+  <!-- Modal -->
+  <div id="myModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>Don’t skip warm-ups and cool-downs — they help prevent injuries!</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Rose's Gym. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    const routines = {
+      beginner: [
+        { name: "Barbell Push Press", img: "barbellpushpress.jpg", sets: "6 reps x 4 sets" },
+        { name: "Goblet Squat", img: "gobletsquat.png", sets: "6 reps x 4 sets" },
+        { name: "Dumbbell Single Arm Row", img: "dumbbellrow.jpg", sets: "6 reps x 4 sets" },
+        { name: "Shoulder Lateral Raise", img: "lateralraises.jpg", sets: "6 reps x 4 sets" },
+        { name: "Bench Press", img: "benchpress.png", sets: "6 reps x 4 sets" },
+        { name: "Pull-ups/Assisted Pull-ups", img: "pullups.jpg", sets: "6 reps x 4 sets" },
+        { name: "Barbell Bicep Curls", img: "bicepcurl.jpg", sets: "8 reps x 4 sets" },
+        { name: "Cable Overhead Tricep Extensions", img: "tricepextension.jpg", sets: "8 reps x 4 sets" },
+        { name: "Rotating Plank", img: "plank.jpeg", sets: "30 secs x 4" }
+      ]
+    };
+
+    function loadRoutine() {
+      const selected = document.getElementById("routineSelect").value;
+      const routineDiv = document.getElementById("routineList");
+
+      if (routines[selected]) {
+        const listItems = routines[selected].map(item => `
+          <li>
+            <img src="${item.img}" alt="${item.name}">
+            ${item.name} (${item.sets})
+          </li>
+        `).join("");
+
+        routineDiv.innerHTML = `<hr><ul>${listItems}</ul>`;
+      } else {
+        routineDiv.innerHTML = "";
+      }
+    }
+  </script>
+
+</body>
+</html>

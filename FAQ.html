@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ - Rose's Gym</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 18px;
+      background-color: grey;
+      color: black;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 60px; /* Space for the fixed footer */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    header {
+      background-color: #808080;
+      color: black;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .auth-buttons a {
+      background-color: black;
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .auth-buttons a:hover {
+      background-color: #444;
+    }
+
+    nav {
+      background-color: #555;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+
+    nav a {
+      color: black;
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      background-color: #666;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 20px;
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .faq {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #d3d3d3;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .dark-mode .faq {
+      background-color: #333;
+    }
+
+    .faq h3 {
+      margin-top: 30px;
+      font-size: 20px;
+    }
+
+    .faq p {
+      margin: 5px 0 20px 0;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    .faq-image {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background-color: #555;
+      color: black;
+    }
+
+    #myModal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    #myModal .modal-content {
+      background: white;
+      margin: 100px auto;
+      padding: 20px;
+      width: 300px;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    #myModal .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .dark-mode #myModal .modal-content {
+      background-color: #333;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .auth-buttons {
+        position: static;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      nav a {
+        font-size: 16px;
+        padding: 8px 10px;
+      }
+
+      .faq h3 {
+        font-size: 18px;
+      }
+
+      .faq p {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .auth-buttons a {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+
+      nav {
+        flex-direction: column;
+      }
+
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>FAQs</h1>
+  <div class="auth-buttons">
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</header>
+
+<nav>
+  <a href="GymTracker.html">Home</a>
+  <a href="Services.html">Services</a>
+  <a href="WorkoutRoutines.html">Workout Routines</a>
+  <a href="AboutUs.html">About Us</a>
+  <a href="FAQ.html">FAQ</a>
+</nav>
+
+<section>
+  <img src="FAQ.jpg" alt="FAQ" class="faq-image">
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq">
+    <h3>1. How do I get started with a fitness program?</h3>
+    <p>Identify your fitness goals and choose a workout plan. You can also consult a trainer for personalized guidance.</p>
+
+    <h3>2. How often should I work out?</h3>
+    <p>Generally, 3-5 days per week, including strength and cardio training.</p>
+
+    <h3>3. What is the best workout for weight loss?</h3>
+    <p>A mix of strength training and high-intensity interval training (HIIT) works best.</p>
+
+    <h3>4. Do I need a gym membership to get fit?</h3>
+    <p>No, you can work out at home with bodyweight exercises or minimal equipment.</p>
+
+    <h3>5. How long does it take to see fitness results?</h3>
+    <p>Most people see improvements in 4-8 weeks with consistency.</p>
+
+    <h3>6. What should I eat before and after a workout?</h3>
+    <p>Before: Carbs and protein (e.g., banana with peanut butter). After: Protein and carbs (e.g., protein shake with fruit).</p>
+
+    <h3>7. How do I stay motivated to work out?</h3>
+    <p>Set goals, track progress, mix up workouts, and find a workout buddy.</p>
+
+    <h3>8. Is it okay to work out every day?</h3>
+    <p>Yes, but include rest days or active recovery to avoid burnout.</p>
+
+    <h3>9. How important is strength training compared to cardio?</h3>
+    <p>Both are essential! Strength training builds muscle, while cardio improves heart health.</p>
+
+    <h3>10. What is the best way to prevent injuries while working out?</h3>
+    <p>Warm up, use proper form, start with lighter weights, and include rest days.</p>
+  </div>
+
+  <br />
+  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <button onclick="openModal()">Need Inspiration?</button>
+</section>
+
+<!-- Modal -->
+<div id="myModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <p>“Success starts with self-discipline.”</p>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Rose's Gym. All Rights Reserved.</p>
+</footer>
+
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+  function openModal() {
+    document.getElementById("myModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+</script>
+
+</body>
+</html>

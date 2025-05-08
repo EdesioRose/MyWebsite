@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rose's Gym</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 18px;
+      background-color: grey;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    header {
+      background-color: #808080;
+      color: black;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .auth-buttons a {
+      background-color: black;
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .auth-buttons a:hover {
+      background-color: #444;
+    }
+
+    nav {
+      background-color: #555;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    nav a {
+      color: black;
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      background-color: #666;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+      padding-bottom: 70px; /* Add space for fixed footer */
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    section img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #555;
+      color: black;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+
+    /* Modal Styles */
+    #myModal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    #myModal .modal-content {
+      background: white;
+      margin: 100px auto;
+      padding: 20px;
+      width: 300px;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    #myModal .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .auth-buttons {
+        position: static;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      nav a {
+        font-size: 16px;
+        padding: 8px 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .auth-buttons a {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+
+      nav {
+        flex-direction: column;
+      }
+
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Rose's Gym</h1>
+    <div class="auth-buttons">
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="GymTracker.html">Home</a>
+    <a href="Services.html">Services</a>
+    <a href="WorkoutRoutines.html">Workout Routines</a>
+    <a href="AboutUs.html">About Us</a>
+    <a href="FAQ.html">FAQ</a>
+  </nav>
+
+  <section id="home">
+    <img src="Rose_s Gym.jpg(1).jpg" alt="Fitness Image">
+    <p>We are here to help you achieve your fitness goals. Whether you're just getting started or you're a seasoned pro, we have something for everyone.</p>
+
+    <!-- Dark Mode Toggle -->
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+    <!-- Modal Trigger -->
+    <button onclick="openModal()">Open Gym Tip</button>
+
+    <!-- Class Schedule Dropdown -->
+    <h3>Class Schedule</h3>
+    <label for="schedule">Select a day:</label>
+    <select id="schedule" onchange="showSchedule()">
+      <option value="">-- Select Day --</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
+    </select>
+
+    <div id="scheduleDisplay" style="margin-top: 20px;"></div>
+  </section>
+
+  <!-- Modal -->
+  <div id="myModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>Tip of the Day: Consistency beats intensity!</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Rose's Gym. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function openModal() {
+      document.getElementById('myModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+
+    const scheduleData = {
+      Monday: ["6 AM - Yoga", "9 AM - CrossFit", "6 PM - Zumba"],
+      Tuesday: ["7 AM - Cardio", "10 AM - Pilates", "5 PM - Strength Training"],
+      Wednesday: ["6 AM - HIIT", "8 AM - Kickboxing", "7 PM - Spin Class"],
+      Thursday: ["7 AM - Circuit Training", "6 PM - Dance Fit"],
+      Friday: ["6 AM - Core Workout", "9 AM - Aerobics", "5 PM - Full Body Burn"],
+      Saturday: ["8 AM - Bootcamp", "10 AM - Meditation", "4 PM - Stretch & Relax"]
+    };
+
+    function showSchedule() {
+      const selectedDay = document.getElementById("schedule").value;
+      const display = document.getElementById("scheduleDisplay");
+
+      if (scheduleData[selectedDay]) {
+        const classes = scheduleData[selectedDay]
+          .map(classItem => `<li>${classItem}</li>`)
+          .join("");
+        display.innerHTML = `<strong>${selectedDay} Classes:</strong><ul>${classes}</ul>`;
+      } else {
+        display.innerHTML = "";
+      }
+    }
+  </script>
+
+</body>
+</html>
